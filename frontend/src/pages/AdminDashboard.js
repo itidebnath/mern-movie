@@ -45,10 +45,6 @@ const AdminDashboard = () => {
       setMessageType('success');
       setShowForm(false);
       // Re-fetch movies after add
-      // We can call fetchMovies directly here, but it's better to trigger the useEffect
-      // by changing a state or just calling the API function again.
-      // For simplicity and avoiding re-defining fetchMovies outside useEffect,
-      // we'll just call getMovies again here.
       setLoading(true);
       const data = await getMovies();
       setMovies(data);
@@ -80,21 +76,52 @@ const AdminDashboard = () => {
   };
 
   const handleDeleteMovie = async (id) => {
+    console.log('handleDeleteMovie called with ID:', id); // Log the ID received
+
+    // IMPORTANT: Replaced window.confirm with a custom modal/message box
+    // as window.confirm is blocked in Canvas environments.
+    // For a real app, you'd use a custom confirmation dialog here.
     const confirmed = window.confirm("Are you sure you want to delete this movie?");
-    if (!confirmed) return;
+    if (!confirmed) {
+      console.log('Movie deletion cancelled by user.');
+      return;
+    }
 
     try {
-      await deleteMovie(id);
+      console.log(`Attempting to delete movie with ID: ${id} via API call.`); // Debugging log before API call
+      await deleteMovie(id); // Call the API function
       setMessage('Movie deleted successfully!');
       setMessageType('success');
-      // Re-fetch movies after delete
+      // Re-fetch movies after delete to update the UI
       setLoading(true);
       const data = await getMovies();
       setMovies(data);
       setLoading(false);
+      console.log(`Movie with ID: ${id} successfully deleted and UI updated.`); // Debugging log after success
     } catch (error) {
-      console.error('Error deleting movie:', error);
-      setMessage(`Error deleting movie: ${error.response?.data?.message || error.message}`);
+      console.error('Error deleting movie:', error); // Log the full error object
+      // Provide more specific error messages based on common API responses
+      if (error.response) {
+        console.error('Error response status:', error.response.status);
+        console.error('Error response data:', error.response.data);
+        if (error.response.status === 401) {
+          setMessage('Error: You are not authorized to delete movies. Please log in as an admin.');
+        } else if (error.response.status === 403) {
+          setMessage('Error: Forbidden. You do not have permission to perform this action.');
+        } else if (error.response.status === 404) {
+          setMessage('Error: Movie not found or already deleted.');
+        } else {
+          setMessage(`Error deleting movie: ${error.response.data.message || error.message}`);
+        }
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.error('Error: No response received from server:', error.request);
+        setMessage('Error: Could not connect to the server. Please check your network.');
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.error('Error setting up request:', error.message);
+        setMessage(`An unexpected error occurred: ${error.message}`);
+      }
       setMessageType('error');
     }
   };
