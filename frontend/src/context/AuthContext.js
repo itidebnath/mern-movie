@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
                 },
             };
             const { data } = await axios.post(
-                'https://mern-movie-backend-a6va.onrender.com/api/auth/login',
+                'http://localhost:5000/api/auth/login',
                 { email, password },
                 config
             );
@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
                 },
             };
             const { data } = await axios.post(
-                'https://mern-movie-backend-a6va.onrender.com/api/auth/register',
+                'http://localhost:5000/api/auth/register',
                 { email, password },
                 config
             );

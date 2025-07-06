@@ -1,7 +1,7 @@
 // frontend/src/api/movies.js
 import axios from 'axios';
 
-const API_URL = 'https://mern-movie-backend-a6va.onrender.com/api/movies';
+const API_URL = 'http://localhost:5000/api/movies';
 
 const getAuthHeaders = () => {
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
