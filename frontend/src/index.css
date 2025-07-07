@@ -1,8 +1,8 @@
-/* frontend/src/index.css */
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 html, body {
-  height: 100%; /* Ensure html and body take full viewport height */
+  height: 100%;
   margin: 0;
 }
 
@@ -10,16 +10,16 @@ body {
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #1a202c; /* Dark background */
-  color: #e2e8f0; /* Light text color */
+  background-color: #1a202c; 
+  color: #e2e8f0; 
   line-height: 1.5;
 
-  /* NEW: Flexbox setup for sticky footer */
+  
   display: flex;
   flex-direction: column;
-  /* Adjust padding-top for fixed navbar */
-  padding-top: 4.5rem; /* Approx navbar height */
-  /* No padding-bottom needed on body anymore, footer is a flex item */
+ 
+  padding-top: 4.5rem; 
+  
 }
 
 code {
@@ -27,14 +27,14 @@ code {
     monospace;
 }
 
-/* --- General Layout & Containers --- */
+
 .container-main {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
   padding: 1rem;
-  background-color: #1a202c; /* Ensure background consistency */
-  /* min-height will now be handled by flex-grow on the content wrapper */
+  background-color: #1a202c; 
+
 }
 
 .flex-container {
@@ -67,7 +67,7 @@ code {
   align-items: center;
 }
 
-/* --- Spacing Utilities --- */
+
 .mb-1 { margin-bottom: 0.25rem; }
 .mb-2 { margin-bottom: 0.5rem; }
 .mb-4 { margin-bottom: 1rem; }
@@ -87,7 +87,7 @@ code {
 .space-x-2 > *:not(:first-child) { margin-left: 0.5rem; }
 .space-x-4 > *:not(:first-child) { margin-left: 1rem; }
 
-/* --- Text & Headings --- */
+
 .text-center { text-align: center; }
 .text-white { color: white; }
 .text-gray-300 { color: #d1d5db; }
@@ -104,7 +104,7 @@ code {
 .font-semibold { font-weight: 600; }
 .text-red-500 { color: #ef4444; }
 
-/* --- Buttons --- */
+
 .btn {
   padding: 0.75rem 1.5rem;
   border-radius: 0.5rem;
