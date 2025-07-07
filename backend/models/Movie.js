@@ -1,9 +1,9 @@
-// backend/models/Movie.js
+
 const mongoose = require('mongoose');
 
 const movieSchema = mongoose.Schema(
     {
-        user: { // To link movies to the user who added them
+        user: { 
             type: mongoose.Schema.Types.ObjectId,
             required: true,
             ref: 'User',
@@ -26,12 +26,12 @@ const movieSchema = mongoose.Schema(
         },
         imageUrl: {
             type: String,
-            default: '', // Optional image URL
+            default: '', 
         },
         // NEW FIELD: Movie Link
         movieLink: {
             type: String,
-            default: '', // Optional movie streaming/embed link
+            default: '', 
         },
     },
     {
