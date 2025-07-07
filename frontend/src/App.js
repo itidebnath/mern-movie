@@ -46,7 +46,7 @@ const AppContent = () => {
             {user && (
                 <nav className="navbar-main">
                     <div className="navbar-content">
-                        <h1 className="navbar-brand">Movie Site</h1>
+                        <h1 className="navbar-brand">FilmFrenzy</h1>
                         <div className="navbar-nav">
                             <button
                                 onClick={() => navigate('/')}
