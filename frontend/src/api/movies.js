@@ -1,4 +1,4 @@
-// frontend/src/api/movies.js
+
 import axios from 'axios';
 
 const API_URL = 'https://mern-movie-backend-a6va.onrender.com/api/movies';
