@@ -1,8 +1,8 @@
-// frontend/src/components/AuthForm.js
+
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 
-// Added onToggleMode prop
+
 const AuthForm = ({ isLogin, onAuthSuccess, onToggleMode }) => {
     const { login, register } = useAuth();
     const [email, setEmail] = useState('');
