@@ -1,14 +1,14 @@
-// frontend/src/pages/HomePage.js
+
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'; // NEW: Import useParams
 import MovieCard from '../components/MovieCard';
-import CategoryNav from '../components/CategoryNav'; // NEW: Import CategoryNav
+import CategoryNav from '../components/CategoryNav';
 import { getMovies } from '../api/movies';
 import { useAuth } from '../context/AuthContext';
 
 const HomePage = () => {
     const { user } = useAuth();
-    const { genre } = useParams(); // NEW: Get genre from URL params
+    const { genre } = useParams(); 
     const [movies, setMovies] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredMovies, setFilteredMovies] = useState([]);
@@ -24,18 +24,18 @@ const HomePage = () => {
             try {
                 setLoading(true);
                 setError('');
-                // Fetch all movies initially
+             
                 const allMovies = await getMovies();
                 setMovies(allMovies);
 
-                // Apply genre filter if a genre is present in the URL
+               
                 if (genre && genre !== 'All') {
                     const genreFiltered = allMovies.filter(movie =>
                         movie.genre.toLowerCase() === genre.toLowerCase()
                     );
                     setFilteredMovies(genreFiltered);
                 } else {
-                    setFilteredMovies(allMovies); // Show all if no genre or 'All'
+                    setFilteredMovies(allMovies); 
                 }
 
             } catch (err) {
@@ -47,10 +47,10 @@ const HomePage = () => {
         };
 
         fetchMovies();
-    }, [user, genre]); // Re-fetch when user or genre changes
+    }, [user, genre]); 
 
     useEffect(() => {
-        // Apply search filter on top of the currently displayed movies (either all or genre-filtered)
+       
         const lowerCaseSearchTerm = searchTerm.toLowerCase();
         const currentMoviesToFilter = genre && genre !== 'All'
             ? movies.filter(movie => movie.genre.toLowerCase() === genre.toLowerCase())
@@ -62,7 +62,7 @@ const HomePage = () => {
             movie.genre.toLowerCase().includes(lowerCaseSearchTerm)
         );
         setFilteredMovies(results);
-    }, [searchTerm, movies, genre]); // Re-filter when search term, all movies, or genre changes
+    }, [searchTerm, movies, genre]); 
 
     if (loading) {
         return (
@@ -83,7 +83,7 @@ const HomePage = () => {
                 {genre && genre !== 'All' ? `${genre} Movies` : 'All Movies'}
             </h1>
 
-            {/* NEW: Category Navigation */}
+            
             <CategoryNav />
 
             <div className="mb-8">
