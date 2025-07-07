@@ -57,7 +57,7 @@ const AuthForm = ({ isLogin, onAuthSuccess, onToggleMode }) => {
                     <input
                         type="email"
                         id="email"
-                        className="form-input"
+                        className="form-input form-login"
                         placeholder="Enter your email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
@@ -71,7 +71,7 @@ const AuthForm = ({ isLogin, onAuthSuccess, onToggleMode }) => {
                     <input
                         type="password"
                         id="password"
-                        className="form-input"
+                        className="form-input form-login"
                         placeholder="Enter your password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}

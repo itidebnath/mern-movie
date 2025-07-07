@@ -28,7 +28,7 @@ const MovieForm = ({ movie, onSubmit, onCancel }) => {
                 <input
                     type="text"
                     id="title"
-                    className="form-input"
+                    className="form-input form-movie"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     required
@@ -41,7 +41,7 @@ const MovieForm = ({ movie, onSubmit, onCancel }) => {
                 <textarea
                     id="description"
                     rows="4"
-                    className="form-textarea"
+                    className="form-textarea form-movie"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     required
@@ -54,7 +54,7 @@ const MovieForm = ({ movie, onSubmit, onCancel }) => {
                 <input
                     type="number"
                     id="releaseYear"
-                    className="form-input"
+                    className="form-input form-movie"
                     value={releaseYear}
                     onChange={(e) => setReleaseYear(e.target.value)}
                     required
@@ -67,7 +67,7 @@ const MovieForm = ({ movie, onSubmit, onCancel }) => {
                 <input
                     type="text"
                     id="genre"
-                    className="form-input"
+                    className="form-input form-movie"
                     value={genre}
                     onChange={(e) => setGenre(e.target.value)}
                     required
@@ -80,7 +80,7 @@ const MovieForm = ({ movie, onSubmit, onCancel }) => {
                 <input
                     type="url"
                     id="imageUrl"
-                    className="form-input"
+                    className="form-input form-movie"
                     value={imageUrl}
                     onChange={(e) => setImageUrl(e.target.value)}
                 />
@@ -93,7 +93,7 @@ const MovieForm = ({ movie, onSubmit, onCancel }) => {
                 <input
                     type="url"
                     id="movieLink"
-                    className="form-input"
+                    className="form-input form-movie"
                     placeholder="e.g., https://example.com/movie-stream"
                     value={movieLink}
                     onChange={(e) => setMovieLink(e.target.value)}
