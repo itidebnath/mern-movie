@@ -1,4 +1,4 @@
-// frontend/src/App.js
+
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
@@ -7,7 +7,7 @@ import HomePage from './pages/HomePage';
 import AdminDashboard from './pages/AdminDashboard';
 import Footer from './components/Footer';
 
-// PrivateRoute component to protect routes
+
 const PrivateRoute = ({ children }) => {
     const { user, loading } = useAuth();
     const navigate = useNavigate();
@@ -27,10 +27,9 @@ const PrivateRoute = ({ children }) => {
         );
     }
 
-    return user ? children : null; // Render children if user is authenticated, otherwise navigate away
-};
+    return user ? children : null; 
 
-// Main App component
+
 const AppContent = () => {
     const { user, logout } = useAuth();
     const navigate = useNavigate();
@@ -41,7 +40,7 @@ const AppContent = () => {
     };
 
     return (
-        // Removed minHeight, display, flexDirection from here. Body handles it.
+        
         <div style={{ fontFamily: 'Inter, sans-serif' }}>
             {user && (
                 <nav className="navbar-main">
@@ -128,7 +127,7 @@ const AppContent = () => {
     );
 };
 
-// Wrapper for AuthProvider and Router
+
 const App = () => {
     return (
         <Router>
