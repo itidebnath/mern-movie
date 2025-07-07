@@ -1,4 +1,4 @@
-// frontend/src/pages/AdminDashboard.js
+
 import React, { useState, useEffect } from 'react';
 import MovieCard from '../components/MovieCard';
 import MovieForm from '../components/MovieForm';
@@ -14,10 +14,9 @@ const AdminDashboard = () => {
   const [messageType, setMessageType] = useState('');
   const [loading, setLoading] = useState(true);
 
-  // Define fetchMovies inside useEffect or use useCallback if it needs to be passed down
-  // For this use case, defining it inside useEffect is common and effective.
+
   useEffect(() => {
-    const fetchMovies = async () => { // Moved inside useEffect
+    const fetchMovies = async () => { 
       if (!user) {
         setLoading(false);
         return;
@@ -36,7 +35,7 @@ const AdminDashboard = () => {
     };
 
     fetchMovies();
-  }, [user]); // Now 'user' is the only dependency for the effect's setup
+  }, [user]); 
 
   const handleAddMovie = async (movieData) => {
     try {
@@ -44,7 +43,7 @@ const AdminDashboard = () => {
       setMessage('Movie added successfully!');
       setMessageType('success');
       setShowForm(false);
-      // Re-fetch movies after add
+      
       setLoading(true);
       const data = await getMovies();
       setMovies(data);
@@ -58,12 +57,12 @@ const AdminDashboard = () => {
 
   const handleUpdateMovie = async (movieData) => {
     try {
-      await updateMovie(editingMovie._id, movieData); // Use _id from MongoDB
+      await updateMovie(editingMovie._id, movieData); 
       setMessage('Movie updated successfully!');
       setMessageType('success');
       setEditingMovie(null);
       setShowForm(false);
-      // Re-fetch movies after update
+     
       setLoading(true);
       const data = await getMovies();
       setMovies(data);
@@ -76,11 +75,9 @@ const AdminDashboard = () => {
   };
 
   const handleDeleteMovie = async (id) => {
-    console.log('handleDeleteMovie called with ID:', id); // Log the ID received
+    console.log('handleDeleteMovie called with ID:', id);
 
-    // IMPORTANT: Replaced window.confirm with a custom modal/message box
-    // as window.confirm is blocked in Canvas environments.
-    // For a real app, you'd use a custom confirmation dialog here.
+  
     const confirmed = window.confirm("Are you sure you want to delete this movie?");
     if (!confirmed) {
       console.log('Movie deletion cancelled by user.');
@@ -88,19 +85,18 @@ const AdminDashboard = () => {
     }
 
     try {
-      console.log(`Attempting to delete movie with ID: ${id} via API call.`); // Debugging log before API call
-      await deleteMovie(id); // Call the API function
+      console.log(`Attempting to delete movie with ID: ${id} via API call.`);
+      await deleteMovie(id); 
       setMessage('Movie deleted successfully!');
       setMessageType('success');
-      // Re-fetch movies after delete to update the UI
+      
       setLoading(true);
       const data = await getMovies();
       setMovies(data);
       setLoading(false);
-      console.log(`Movie with ID: ${id} successfully deleted and UI updated.`); // Debugging log after success
+      console.log(`Movie with ID: ${id} successfully deleted and UI updated.`); 
     } catch (error) {
-      console.error('Error deleting movie:', error); // Log the full error object
-      // Provide more specific error messages based on common API responses
+      console.error('Error deleting movie:', error); 
       if (error.response) {
         console.error('Error response status:', error.response.status);
         console.error('Error response data:', error.response.data);
@@ -114,11 +110,11 @@ const AdminDashboard = () => {
           setMessage(`Error deleting movie: ${error.response.data.message || error.message}`);
         }
       } else if (error.request) {
-        // The request was made but no response was received
+        
         console.error('Error: No response received from server:', error.request);
         setMessage('Error: Could not connect to the server. Please check your network.');
       } else {
-        // Something happened in setting up the request that triggered an Error
+        
         console.error('Error setting up request:', error.message);
         setMessage(`An unexpected error occurred: ${error.message}`);
       }
