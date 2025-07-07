@@ -1,9 +1,9 @@
-// frontend/src/components/CategoryNav.js
+
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 const categories = [
-    'All', // Special category to show all movies
+    'All',   
     'Action',
     'Comedy',
     'Drama',
@@ -16,7 +16,7 @@ const categories = [
 ];
 
 const CategoryNav = () => {
-    const { genre } = useParams(); // Get current genre from URL
+    const { genre } = useParams();  
 
     return (
         <div className="category-nav">

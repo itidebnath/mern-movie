@@ -1,8 +1,8 @@
-// frontend/src/components/AuthForm.js
+
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 
-// Added onToggleMode prop
+ 
 const AuthForm = ({ isLogin, onAuthSuccess, onToggleMode }) => {
     const { login, register } = useAuth();
     const [email, setEmail] = useState('');
@@ -25,7 +25,7 @@ const AuthForm = ({ isLogin, onAuthSuccess, onToggleMode }) => {
         if (result.success) {
             setMessage(isLogin ? 'Logged in successfully!' : 'Signed up successfully!');
             setMessageType('success');
-            onAuthSuccess(); // This will navigate to home page
+            onAuthSuccess();  
         } else {
             setMessage(result.message || 'An error occurred.');
             setMessageType('error');
@@ -99,7 +99,7 @@ const AuthForm = ({ isLogin, onAuthSuccess, onToggleMode }) => {
                     {isLogin ? "Don't have an account?" : "Already have an account?"}{' '}
                     <button
                         type="button"
-                        onClick={onToggleMode} // Call the new onToggleMode prop
+                        onClick={onToggleMode}   Call the new onToggleMode prop
                         className="text-purple-400 font-bold"
                         style={{ background: 'none', border: 'none', cursor: 'pointer' }}
                     >

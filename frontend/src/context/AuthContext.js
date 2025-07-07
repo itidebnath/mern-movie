@@ -1,4 +1,3 @@
-// frontend/src/context/AuthContext.js
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 
@@ -24,12 +23,12 @@ export const AuthProvider = ({ children }) => {
                 },
             };
             const { data } = await axios.post(
-                'https://mern-movie-backend-a6va.onrender.com/api/auth/login',
+                'http://localhost:5000/api/auth/login',
                 { email, password },
                 config
             );
             localStorage.setItem('userInfo', JSON.stringify(data));
-            setUser(data); // data now includes 'role'
+            setUser(data);   
             return { success: true };
         } catch (error) {
             console.error('Login error:', error.response?.data?.message || error.message);
@@ -45,12 +44,12 @@ export const AuthProvider = ({ children }) => {
                 },
             };
             const { data } = await axios.post(
-                'https://mern-movie-backend-a6va.onrender.com/api/auth/register',
+                'http://localhost:5000/api/auth/register',
                 { email, password },
                 config
             );
             localStorage.setItem('userInfo', JSON.stringify(data));
-            setUser(data); // data now includes 'role'
+            setUser(data);   
             return { success: true };
         } catch (error) {
             console.error('Register error:', error.response?.data?.message || error.message);

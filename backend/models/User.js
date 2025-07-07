@@ -1,4 +1,4 @@
-// backend/models/User.js
+ 
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
@@ -13,11 +13,11 @@ const userSchema = mongoose.Schema(
             type: String,
             required: true,
         },
-        // NEW FIELD: User Role
+          
         role: {
             type: String,
-            enum: ['user', 'admin'], // Enforce specific roles
-            default: 'user', // Default role for new users
+            enum: ['user', 'admin'],   
+            default: 'user',   
         },
     },
     {
@@ -25,7 +25,7 @@ const userSchema = mongoose.Schema(
     }
 );
 
-// Hash password before saving
+ 
 userSchema.pre('save', async function (next) {
     if (!this.isModified('password')) {
         next();
@@ -34,7 +34,7 @@ userSchema.pre('save', async function (next) {
     this.password = await bcrypt.hash(this.password, salt);
 });
 
-// Compare password method
+ 
 userSchema.methods.matchPassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);
 };

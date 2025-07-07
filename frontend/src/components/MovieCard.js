@@ -1,20 +1,19 @@
-// frontend/src/components/MovieCard.js
+
 import React, { useState } from 'react';
 
 const MovieCard = ({ movie, onEdit, onDelete, isAdmin }) => {
-    const [showPlayer, setShowPlayer] = useState(false); // State to control player modal visibility
+    const [showPlayer, setShowPlayer] = useState(false);  
 
-    // Function to get the correct embed URL for YouTube videos
-    // This is a basic helper; for more robust handling, consider backend processing
+      
     const getEmbedUrl = (url) => {
         if (!url) return '';
-        // Basic YouTube watch link to embed link conversion
+          
         if (url.includes('youtube.com/watch?v=')) {
             const videoId = url.split('v=')[1]?.split('&')[0];
-            return `https://www.youtube.com/embed/${videoId}?autoplay=1`; // Autoplay for better UX
+            return `https: www.youtube.com/embed/${videoId}?autoplay=1`;   
         }
-        // Add similar logic for other platforms if needed (e.g., Vimeo)
-        return url; // Assume it's already an embeddable URL otherwise
+          
+        return url;  
     };
 
     const embedSrc = getEmbedUrl(movie.movieLink);
@@ -22,10 +21,10 @@ const MovieCard = ({ movie, onEdit, onDelete, isAdmin }) => {
     return (
         <div className="movie-card">
             <img
-                src={movie.imageUrl || `https://placehold.co/400x600/374151/FFFFFF?text=${encodeURIComponent(movie.title)}`}
+                src={movie.imageUrl || `https: placehold.co/400x600/374151/FFFFFF?text=${encodeURIComponent(movie.title)}`}
                 alt={movie.title}
                 className="movie-card-image"
-                onError={(e) => { e.target.onerror = null; e.target.src = `https://placehold.co/400x600/374151/FFFFFF?text=${encodeURIComponent(movie.title)}`; }}
+                onError={(e) => { e.target.onerror = null; e.target.src = `https: placehold.co/400x600/374151/FFFFFF?text=${encodeURIComponent(movie.title)}`; }}
             />
             <div className="movie-card-content">
                 <h3 className="movie-card-title">{movie.title}</h3>
@@ -35,7 +34,7 @@ const MovieCard = ({ movie, onEdit, onDelete, isAdmin }) => {
                 {movie.movieLink && (
                     <div style={{ marginTop: '1rem', textAlign: 'center' }}>
                         <button
-                            onClick={() => setShowPlayer(true)} // Open the player modal
+                            onClick={() => setShowPlayer(true)}   Open the player modal
                             className="btn btn-primary"
                             style={{ padding: '0.5rem 1rem', fontSize: '0.875rem' }} /* Smaller button for card */
                         >

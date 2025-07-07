@@ -1,4 +1,4 @@
-// frontend/src/components/MovieForm.js
+
 import React, { useState } from 'react';
 
 const MovieForm = ({ movie, onSubmit, onCancel }) => {
@@ -7,13 +7,13 @@ const MovieForm = ({ movie, onSubmit, onCancel }) => {
     const [releaseYear, setReleaseYear] = useState(movie?.releaseYear || '');
     const [genre, setGenre] = useState(movie?.genre || '');
     const [imageUrl, setImageUrl] = useState(movie?.imageUrl || '');
-    const [movieLink, setMovieLink] = useState(movie?.movieLink || ''); // NEW: movieLink state
+    const [movieLink, setMovieLink] = useState(movie?.movieLink || '');  
     const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        // Include movieLink in the submitted data
+          
         await onSubmit({ title, description, releaseYear: parseInt(releaseYear), genre, imageUrl, movieLink });
         setLoading(false);
     };
@@ -94,7 +94,7 @@ const MovieForm = ({ movie, onSubmit, onCancel }) => {
                     type="url"
                     id="movieLink"
                     className="form-input form-movie"
-                    placeholder="e.g., https://example.com/movie-stream"
+                    placeholder="e.g., https: example.com/movie-stream"
                     value={movieLink}
                     onChange={(e) => setMovieLink(e.target.value)}
                 />
