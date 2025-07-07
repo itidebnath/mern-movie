@@ -1,4 +1,4 @@
-// frontend/src/context/AuthContext.js
+
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 
@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
                 config
             );
             localStorage.setItem('userInfo', JSON.stringify(data));
-            setUser(data); // data now includes 'role'
+            setUser(data); 
             return { success: true };
         } catch (error) {
             console.error('Login error:', error.response?.data?.message || error.message);
