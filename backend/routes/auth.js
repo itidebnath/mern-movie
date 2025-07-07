@@ -1,20 +1,18 @@
-// backend/routes/auth.js
+
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-// Generate JWT token
+
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
         expiresIn: '1h', // Token expires in 1 hour
     });
 };
 
-// @desc    Register a new user
-// @route   POST /api/auth/register
-// @access  Public
+
 router.post('/register', async (req, res) => {
     const { email, password } = req.body;
 
@@ -49,9 +47,7 @@ router.post('/register', async (req, res) => {
     }
 });
 
-// @desc    Authenticate user & get token
-// @route   POST /api/auth/login
-// @access  Public
+
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
