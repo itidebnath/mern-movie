@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+# Created by https://www.toptal.com/developers/gitignore/api/node
+# Edit at https://www.toptal.com/developers/gitignore?templates=node
+
+>>>>>>> 0b55beccaff7e1c4861598bcf53f1ef4b1557319
 ### Node ###
 # Logs
 logs
@@ -138,4 +144,8 @@ dist
 # SvelteKit build / generate output
 .svelte-kit
 
+<<<<<<< HEAD
 # End of https://www.toptal.com/developers/gitignore/api/node
+=======
+# End of https://www.toptal.com/developers/gitignore/api/node
+>>>>>>> 0b55beccaff7e1c4861598bcf53f1ef4b1557319
