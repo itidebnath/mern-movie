@@ -1,9 +1,7 @@
- 
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+ import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs'
 
-const userSchema = mongoose.Schema(
-    {
+const userSchema = mongoose.Schema({
         email: {
             type: String,
             required: true,
@@ -13,19 +11,18 @@ const userSchema = mongoose.Schema(
             type: String,
             required: true,
         },
-          
+      
         role: {
             type: String,
-            enum: ['user', 'admin'],   
-            default: 'user',   
-        },
+            enum: ['user', 'admin'],
+            default: 'user', 
     },
-    {
-        timestamps: true,
-    }
-);
 
- 
+    timestamps:{
+        default:true
+    }
+});
+
 userSchema.pre('save', async function (next) {
     if (!this.isModified('password')) {
         next();
@@ -34,7 +31,7 @@ userSchema.pre('save', async function (next) {
     this.password = await bcrypt.hash(this.password, salt);
 });
 
- 
+
 userSchema.methods.matchPassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);
 };

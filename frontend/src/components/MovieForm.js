@@ -7,13 +7,13 @@ const MovieForm = ({ movie, onSubmit, onCancel }) => {
     const [releaseYear, setReleaseYear] = useState(movie?.releaseYear || '');
     const [genre, setGenre] = useState(movie?.genre || '');
     const [imageUrl, setImageUrl] = useState(movie?.imageUrl || '');
-    const [movieLink, setMovieLink] = useState(movie?.movieLink || '');  
+    const [movieLink, setMovieLink] = useState(movie?.movieLink || ''); // NEW: movieLink state
     const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-          
+        // Include movieLink in the submitted data
         await onSubmit({ title, description, releaseYear: parseInt(releaseYear), genre, imageUrl, movieLink });
         setLoading(false);
     };

@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const movieSchema = mongoose.Schema(
     {
-        user: {   
+        user: { 
             type: mongoose.Schema.Types.ObjectId,
             required: true,
             ref: 'User',
@@ -26,12 +26,12 @@ const movieSchema = mongoose.Schema(
         },
         imageUrl: {
             type: String,
-            default: '',   
+            default: '', 
         },
           
         movieLink: {
             type: String,
-            default: '',   
+            default: '', 
         },
     },
     {

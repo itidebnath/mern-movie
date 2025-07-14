@@ -5,14 +5,12 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
- 
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
         expiresIn: '24h',   
     });
 };
 
-  
 router.post('/register', async (req, res) => {
     const { email, password } = req.body;
 

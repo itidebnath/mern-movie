@@ -1,4 +1,4 @@
-  
+// backend/routes/movies.js
 const express = require('express');
 const router = express.Router();
 const { protect } = require('../middleware/auth');
@@ -17,14 +17,16 @@ router.get('/', protect, async (req, res) => {
             }
             : {};
 
-        const movies = await Movie.find(keyword);   
+        const movies = await Movie.find(keyword);
         res.json(movies);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 });
 
- 
+// @desc    Add a new movie
+// @route   POST /api/movies
+// @access  Private
 router.post('/', protect, async (req, res) => {
      
     const { title, description, releaseYear, genre, imageUrl, movieLink } = req.body;
@@ -35,12 +37,13 @@ router.post('/', protect, async (req, res) => {
 
     try {
         const movie = new Movie({
-            user: req.user._id,  
+            user: req.user._id, // Link movie to the logged-in user
+            title,
             description,
             releaseYear,
             genre,
             imageUrl,
-            movieLink,   
+            movieLink, // Save the new field
         });
 
         const createdMovie = await movie.save();
@@ -50,7 +53,9 @@ router.post('/', protect, async (req, res) => {
     }
 });
 
-  
+// @desc    Update a movie
+// @route   PUT /api/movies/:id
+// @access  Private
 router.put('/:id', protect, async (req, res) => {
      
     const { title, description, releaseYear, genre, imageUrl, movieLink } = req.body;
@@ -59,7 +64,7 @@ router.put('/:id', protect, async (req, res) => {
         const movie = await Movie.findById(req.params.id);
 
         if (movie) {
-              
+            // Ensure the logged-in user owns this movie (optional, but good practice for admin-like features)
             if (movie.user.toString() !== req.user._id.toString()) {
                 return res.status(401).json({ message: 'Not authorized to update this movie' });
             }
@@ -68,8 +73,8 @@ router.put('/:id', protect, async (req, res) => {
             movie.description = description || movie.description;
             movie.releaseYear = releaseYear || movie.releaseYear;
             movie.genre = genre || movie.genre;
-            movie.imageUrl = imageUrl !== undefined ? imageUrl : movie.imageUrl;   
-            movie.movieLink = movieLink !== undefined ? movieLink : movie.movieLink;   
+            movie.imageUrl = imageUrl !== undefined ? imageUrl : movie.imageUrl; // Allow clearing image URL
+            movie.movieLink = movieLink !== undefined ? movieLink : movie.movieLink; // NEW: Allow clearing movieLink
 
             const updatedMovie = await movie.save();
             res.json(updatedMovie);
@@ -92,7 +97,7 @@ router.delete('/:id', protect, async (req, res) => {
                 return res.status(401).json({ message: 'Not authorized to delete this movie' });
             }
 
-            await movie.deleteOne();  
+            await movie.deleteOne(); 
             res.json({ message: 'Movie removed' });
         } else {
             res.status(404).json({ message: 'Movie not found' });

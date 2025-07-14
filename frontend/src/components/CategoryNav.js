@@ -16,7 +16,7 @@ const categories = [
 ];
 
 const CategoryNav = () => {
-    const { genre } = useParams();  
+    const { genre } = useParams(); // Get current genre from URL
 
     return (
         <div className="category-nav">
